@@ -2,8 +2,9 @@ import express, { json } from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 dotenv.config()
-import { userRouter } from "./routes/user.js"
-
+import { authRouter } from "./routes/auth.js"
+import { viewRouter } from "./routes/view.js"
+import jwt from "jsonwebtoken"
 const app=express()
 
 // db connection
@@ -13,11 +14,25 @@ async function main()
     await mongoose.connect(process.env.MONGO_URL)
     console.log("DB Connected")
 }
-
+const auth=(req,res,next)=>{
+    try{
+        const token=req.get('Authorization').split('Bearer ')[1]
+        const decoded=jwt.verify(token,process.env.SECRET_KEY)
+        if(decoded.userId)
+        {
+            req.userId=decoded.userId
+            next()
+        }
+    }
+    catch(error)
+    {
+        res.sendStatus(401)
+    }
+}
 // middleware
 app.use(json())
-app.use('/user',userRouter)
-
+app.use('/auth',authRouter)
+app.use('/view',auth,viewRouter)
 app.get('/',(req,res)=>{
     res.json({success:true,message:"working fine"})
 })

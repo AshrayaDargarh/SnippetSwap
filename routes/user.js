@@ -1,6 +1,6 @@
 import express from "express"
-import { signUp } from "../controllers/user"
+import { getUserData } from "../controllers/user"
 export const userRouter=express.Router()
 
 userRouter
-.post('/signUp',signUp)
+.get('/:id',getUserData)
