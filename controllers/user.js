@@ -18,3 +18,4 @@ export const getUserData=async(req,res)=>{
         res.status(401).json(err)
     }
 }
+

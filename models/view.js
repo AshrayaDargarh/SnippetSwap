@@ -12,3 +12,8 @@ const viewSchema=new Schema({
 })
 
 export const View=mongoose.model('View',viewSchema)
+// {
+//     "title":"Ashu Bhai",
+//     "data":"Ashu data is here",
+//     "daysToExpire":2
+//  }

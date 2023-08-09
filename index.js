@@ -39,6 +39,6 @@ app.get('/',(req,res)=>{
 
 
 const PORT=process.env.PORT_URL || 4000
-app.listen(PORT,()=>{
+app.listen(PORT,()=>{  
     console.log(`Server is listing at http://localhost:${PORT}`)
 })

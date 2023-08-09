@@ -17,7 +17,17 @@ const userSchema= new Schema({
         type:String,
         min:6,
         required:true
-    }
+    },
+    resetPasswordToken:String,
+    resetPasswordExpires:Date
 })
 
 export const User=mongoose.model('User',userSchema)
+// {
+//     "userName":"ashu_bhai",
+//     "firstName":"Ashraya",
+//     "lastName":"Dargarh",
+//     "age":21,
+//     "email":"ashraydargar01@gmail.com",
+//     "password":"123456"
+//  }
