@@ -1,6 +1,7 @@
 import express from "express"
-import { getUserData } from "../controllers/user"
+import { getUser,updateUser } from "../controllers/user"
 export const userRouter=express.Router()
 
 userRouter
-.get('/:id',getUserData)
+.get('/:id',getUser)
+.patch('/:id',updateUser)

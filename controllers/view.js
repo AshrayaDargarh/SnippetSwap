@@ -40,15 +40,7 @@ export const getViews=async(req,res)=>{
         res.json(error)
     }
 }
-export const getView=async(req,res)=>{
-    try {
-        const id=req.params.id
-        const view=await View.findById({_id:id})
-        res.json(view)
-    } catch (error) {
-        res.json(error)
-    }
-}
+
 export const updateView=async(req,res)=>{
     const {title,data,daysToExpire}=req.body
     const expirationDate=new Date()

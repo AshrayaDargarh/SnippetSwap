@@ -6,7 +6,6 @@ import nodemailer from "nodemailer"
 
 export const signUp=async(req,res)=>{
     const user=await User(req.body)
-    const secret=process.env.SECRET_KEY
     const saltRounds = 10;
     const hash=bcrypt.hashSync(req.body.password,saltRounds)    
     user.password=hash
@@ -19,14 +18,14 @@ export const signUp=async(req,res)=>{
         res.status(401).json(err)
     }
 }
-
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGQzYjg3OTRmMDkwOGMyYjRkZjU4MzMiLCJpYXQiOjE2OTE2MDgxMDAsImV4cCI6MTY5MTY5NDUwMH0.-TJSI1jhImK2zm-6PvcYbmQu_bh-MZ-Ga0deGGPeaYY
 export const login=async(req,res)=>{
     try{
         const doc=await User.findOne({email:req.body.email})
         const isAuth=await bcrypt.compare(req.body.password,doc.password)
         if(isAuth)
         {
-            const token=jwt.sign({userId:doc._id},process.env.SECRET_KEY,{expiresIn:'1d'})
+            const token=jwt.sign({userId:doc._id},process.env.SECRET_KEY,{expiresIn:'1m'})
             doc.save()
             res.json({token})
         }
