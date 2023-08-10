@@ -1,5 +1,6 @@
 import { User } from "../models/user";
 import bcrypt from "bcrypt"
+
 export const getUser=async(req,res)=>{
    const id=req.params.id
     try{

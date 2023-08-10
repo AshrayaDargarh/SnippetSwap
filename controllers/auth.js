@@ -18,14 +18,14 @@ export const signUp=async(req,res)=>{
         res.status(401).json(err)
     }
 }
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGQzYjg3OTRmMDkwOGMyYjRkZjU4MzMiLCJpYXQiOjE2OTE2MDgxMDAsImV4cCI6MTY5MTY5NDUwMH0.-TJSI1jhImK2zm-6PvcYbmQu_bh-MZ-Ga0deGGPeaYY
+
 export const login=async(req,res)=>{
     try{
-        const doc=await User.findOne({email:req.body.email})
+        const doc=await User.findOne({email:req.body.email}) || await User.findOne({userName:req.body.userName})
         const isAuth=await bcrypt.compare(req.body.password,doc.password)
         if(isAuth)
         {
-            const token=jwt.sign({userId:doc._id},process.env.SECRET_KEY,{expiresIn:'1m'})
+            const token=jwt.sign({userId:doc._id},process.env.SECRET_KEY,{expiresIn:'1d'})
             doc.save()
             res.json({token})
         }
@@ -91,7 +91,8 @@ export const resetPassword=async(req,res)=>{
         {
             return res.status(400).json({message:'Invalid or expired token'})
         }
-        user.password=password
+        const hash=bcrypt.hashSync(password,10)
+        user.password=hash
         user.resetPasswordToken=undefined
         user.resetPasswordExpires=undefined
         await user.save()
