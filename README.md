@@ -30,12 +30,11 @@ SnippetSwap is a MERN stack web application that allows users to register, log i
 To run the SnippetSwap application locally, follow these steps:
 
 1. Clone the repository:
-    - git clone https://github.com/your-username/SnippetSwap.git
+    - git clone https://github.com/AshrayaDargarh/SnippetSwap.git
 
-2. Install the dependencies for both the server and client:
+2. Install the dependencies for server:
 
     - cd SnippetSwap
-    - npm install
     - npm install
 
 3. Create a `.env` file in the root directory and add your environment variables (e.g., database connection URI, JWT secret, email service credentials).
