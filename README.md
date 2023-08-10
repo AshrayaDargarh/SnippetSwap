@@ -36,7 +36,6 @@ To run the SnippetSwap application locally, follow these steps:
 
     - cd SnippetSwap
     - npm install
-    - cd client
     - npm install
 
 3. Create a `.env` file in the root directory and add your environment variables (e.g., database connection URI, JWT secret, email service credentials).
