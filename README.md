@@ -12,7 +12,6 @@ SnippetSwap is a MERN stack web application that allows users to register, log i
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
-- [API Endpoints](#api-endpoints)
 
 ## Features
 
@@ -57,8 +56,5 @@ To run the SnippetSwap application locally, follow these steps:
 7. Update Profile: Update your name, password, and email through the profile section.
 8. Forgot Password: Reset your password by requesting a password reset email.
 
-## API Endpoints
-
-For detailed information about the available API endpoints, refer to the [API documentation](/api-docs).
 
 
