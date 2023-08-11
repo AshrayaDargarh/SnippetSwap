@@ -25,7 +25,7 @@ export const login=async(req,res)=>{
         const isAuth=await bcrypt.compare(req.body.password,doc.password)
         if(isAuth)
         {
-            const token=jwt.sign({userId:doc._id},process.env.SECRET_KEY,{expiresIn:'1d'})
+            const token=jwt.sign({userId:doc._id,userName:doc.userName},process.env.SECRET_KEY,{expiresIn:'1d'})
             doc.save()
             res.json({token})
         }

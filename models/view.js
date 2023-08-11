@@ -5,6 +5,7 @@ const viewSchema=new Schema({
     title:{type:String,required:true,default:'Untitled'},
     data:{type:String,required:true},
     intendedExpireAt:{type:Date,required:true},
+    userName:String,
     user:{
         type:Schema.Types.ObjectId,
         ref:'User'

@@ -11,7 +11,7 @@ export const createView=async(req,res)=>{
   console.log(expirationDate)
 
     try {
-        const view=new View({title,data,intendedExpireAt:expirationDate,user:req.userId})
+        const view=new View({title,data,intendedExpireAt:expirationDate,user:req.userId,userName:req.userName})
         const doc=await view.save()        
         res.status(200).json(doc)
     } catch (error) {
