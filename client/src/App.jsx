@@ -7,19 +7,21 @@ import Error from './components/Error'
 import Login from './components/Login'
 import Home from './components/Home'
 import Register from './components/Register'
-import SignInUp from './components/SignInUp'
 import { createBrowserRouter,Outlet } from 'react-router-dom'
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
+import { AuthProvider } from './context/AuthContext'
 function App() {
   const [count, setCount] = useState(true)
-
+  // const token=useLongIn()
   return (
     <>
     
     <div className='bg-slate-900 h-screen text-white'>
+    <AuthProvider>
     <Header/>
      <Outlet/>
+     </AuthProvider>
     </div>
     
     </>

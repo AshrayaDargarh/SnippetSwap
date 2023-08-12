@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import { useAuth } from '../context/AuthContext';
 const Login = () => {
   const[user,setUser]=useState({})
   const[isValid,setIsValid]=useState(true)
+  const {login}=useAuth()
+  const navigate=useNavigate()
+
   function handleChange(e)
   {
     setUser({
@@ -14,17 +18,22 @@ const Login = () => {
   async function  handleSubmit(e)
   {
     e.preventDefault()
-    console.log(user)
     try
     {
       const res=await axios.post('http://localhost:3001/auth/login',user,{withCredentials:true})
+      // localStorage.setItem('token',res.data.token)
       setIsValid(true)
+      console.log(res.data.token)
+      login(res.data.token)
+      navigate('/create')      
     }
     catch(err)
     {
+     
       if(err.response)
       {
         const {status,data}=err.response
+        
         if(status===400)
         {
           setIsValid(false)

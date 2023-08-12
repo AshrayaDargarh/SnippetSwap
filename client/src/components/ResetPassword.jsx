@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 const ResetPassword = () => {
   const [password, setPassword]=useState({})
+  const navigate=useNavigate()
   const[isValid,setIsValid]=useState(null)
   const {resetToken}=useParams()
   function handleChange(e)
@@ -18,7 +19,7 @@ const ResetPassword = () => {
     try {
       const res=await axios.post(`http://localhost:3001/auth/reset-password/${resetToken}`,password,{withCredentials:true})
       setIsValid(true)
-      console.log(res.data)
+      navigate('/login')
     } catch (error) {
       console.log(error.response)
       if(error.response)
