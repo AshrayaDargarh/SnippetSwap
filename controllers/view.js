@@ -47,7 +47,7 @@ export const updateView=async(req,res)=>{
     expirationDate.setDate(expirationDate.getDate()+daysToExpire)
     try {
         const id=req.params.id
-        const updatedView=await View.findOneAndUpdate({_id:id},{title,data,intendedExpireAt:expirationDate},{new:true})
+        const updatedView=await View.findOneAndUpdate({_id:id,user:req.userId},{title,data,intendedExpireAt:expirationDate},{new:true})
         res.json(updatedView)
         console.log(updateView)
     } catch (error) {
