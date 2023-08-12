@@ -23,7 +23,7 @@ const Header = () => {
         <ul className="flex">
         <li className="px-6"><Link ro='/'>Home</Link></li>
           <li className="px-6">
-            <Link to='/signinup'>try it now</Link>
+            <Link to='/login'>try it now</Link>
           </li>
          
         </ul>

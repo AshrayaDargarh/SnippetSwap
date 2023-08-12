@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 import Header from './components/Header'
 import Create from './components/Create'
 import View from './components/View'
@@ -10,13 +9,18 @@ import Home from './components/Home'
 import Register from './components/Register'
 import SignInUp from './components/SignInUp'
 import { createBrowserRouter,Outlet } from 'react-router-dom'
+import ForgotPassword from './components/ForgotPassword'
+import ResetPassword from './components/ResetPassword'
 function App() {
   const [count, setCount] = useState(true)
 
   return (
     <>
-     <Header/>
+    <div className='bg-slate-900 h-screen text-white'>
+    <Header/>
      <Outlet/>
+    </div>
+    
     </>
   )
 }
@@ -30,8 +34,20 @@ export const appRouter=createBrowserRouter([{
       element:<Home/>
     },
     {
-      path:'signinup',
-      element:<SignInUp/>
+      path:'/signup',
+      element:<Register/>
+    },
+    {
+      path:'/login',
+      element:<Login/>
+    },
+   {
+    path:'/forgotpassword',
+    element:<ForgotPassword/>
+   },
+    {
+    path:'/auth/reset-password/:resetToken',
+    element:<ResetPassword/>
     },
     {
       path:"/create",

@@ -1,6 +1,7 @@
 import express, { json } from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
+import cors from "cors"
 dotenv.config()
 import { authRouter } from "./routes/auth.js"
 import { viewRouter } from "./routes/view.js"
@@ -35,6 +36,8 @@ const auth=(req,res,next)=>{
 }
 // middleware
 app.use(json())
+app.use(cors({ credentials: true, origin: 'http://localhost:5173' }))
+
 app.use('/auth',authRouter)
 app.use('/view',auth,viewRouter)
 app.use('/user',auth,userRouter)
