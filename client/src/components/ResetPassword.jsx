@@ -1,6 +1,9 @@
 import React from 'react'
-
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 const ResetPassword = () => {
+  const {resetToken}=useParams()
+
   return (
     <div>
     <div className="flex justify-center mt-10">
