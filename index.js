@@ -42,7 +42,7 @@ app.use('/auth',authRouter)
 app.use('/view',auth,viewRouter)
 app.use('/user',auth,userRouter)
 
-app.get('/:id',async(req,res)=>{
+app.get('/public/:id',async(req,res)=>{
     try {
         const id=req.params.id
         const view=await View.findById({_id:id})

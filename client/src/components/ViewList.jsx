@@ -14,6 +14,7 @@ const ViewList = () => {
         const token=localStorage.getItem('token')
         const res=await axios.get('http://localhost:3001/view',{headers:{'Authorization':`Bearer ${token}`}})
             setSnippets(res.data)
+            console.log('user=',res.data[0].user)
         } 
         catch (error) {
             console.log(error.response)

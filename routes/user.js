@@ -3,5 +3,5 @@ import { getUser,updateUser } from "../controllers/user"
 export const userRouter=express.Router()
 
 userRouter
-.get('/:id',getUser)
+.get('/',getUser)
 .patch('/:id',updateUser)

@@ -2,9 +2,9 @@ import { User } from "../models/user";
 import bcrypt from "bcrypt"
 
 export const getUser=async(req,res)=>{
-   const id=req.params.id
     try{
-        const user=await User.findById({_id:id})
+        const user=await User.findById({_id:req.userId})
+        console.log(user)
         res.status(200).json(user)
     }
     catch(err)

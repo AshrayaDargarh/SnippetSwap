@@ -13,6 +13,7 @@ import ResetPassword from './components/ResetPassword'
 import { AuthProvider } from './context/AuthContext'
 import ViewList from './components/ViewList'
 import ViewUpdate from './components/ViewUpdate'
+import ViewPublic from './components/ViewPublic'
 function App() {
   const [count, setCount] = useState(true)
   // const token=useLongIn()
@@ -71,5 +72,10 @@ export const appRouter=createBrowserRouter([{
       element:<Profile/>
     }
   ]
+},
+{
+    path:"/public/:viewId",
+    element:<ViewPublic/>,
+    errorElement:<Error/>
 }])
 export default App
