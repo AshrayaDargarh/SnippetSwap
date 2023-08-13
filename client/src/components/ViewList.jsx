@@ -1,36 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import View from './View'
 import { Link } from 'react-router-dom'
-
-const snippetData=[
-    {
-        id:1,
-        title:'Title1',
-        data:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam libero omnis repudiandae quos. Nesciunt fugiat, voluptatem iusto illum et ut ipsum incidunt nemo aliquid at, dignissimos quam a nostrum magni?'
-    },
-    {
-        id:2,
-        title:'Title2',
-        data:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam libero omnis repudiandae quos. Nesciunt fugiat, voluptatem iusto illum et ut ipsum incidunt nemo aliquid at, dignissimos quam a nostrum magni?'
-    },
-    {
-        id:3,
-        title:'Title3',
-        data:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam libero omnis repudiandae quos. Nesciunt fugiat, voluptatem iusto illum et ut ipsum incidunt nemo aliquid at, dignissimos quam a nostrum magni?'
-    },
-    {
-        id:4,
-        title:'Title4',
-        data:'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam libero omnis repudiandae quos. Nesciunt fugiat, voluptatem iusto illum et ut ipsum incidunt nemo aliquid at, dignissimos quam a nostrum magni?'
-    },
-]
+import axios from 'axios'
 
 const ViewList = () => {
-    const [snippets,setSnippets]=useState(snippetData)
+    const [snippets,setSnippets]=useState([])
+    useEffect(()=>{
+        getSnippets()
+    },[])
+    async function getSnippets()
+    {
+        try {
+        const token=localStorage.getItem('token')
+        const res=await axios.get('http://localhost:3001/view',{headers:{'Authorization':`Bearer ${token}`}})
+            setSnippets(res.data)
+        } 
+        catch (error) {
+            console.log(error.response)
+        }
+    }
     console.log(snippets)
   return (
-    <div className='flex justify-center m-5 ' >
-        {snippets.length===0?<div>No snippet available</div>:snippets.map((snippet)=>{return <Link to={'/viewupdate/'+snippet.id} key={snippet.id}><View key={snippet.id} {...snippet}/> </Link> })}
+    <div className='flex justify-center m-5 flex-wrap' >
+        {snippets.length===0?<div>No snippet available</div>:snippets.map((snippet)=>{return <Link to={'/viewupdate/'+snippet._id} key={snippet._id}><View key={snippet._id} {...snippet}/> </Link> })}
     </div>
   )
 }

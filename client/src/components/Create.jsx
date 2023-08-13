@@ -63,7 +63,9 @@ const Create = () => {
               <label htmlFor="daysToExpire" className="block text-sm">
                 Expire after days:
               </label>
-              <input type="number" min="1"  onKeyPress={(event) => {if (!/[0-9]/.test(event.key)) {event.preventDefault();}}} placeholder='Expires after (days)' name="daysToExpire" id="daysToExpire" className='bg-slate-900 border w-72 border-slate-600 px-2 mt-2 py-1 rounded-md ' onChange={handleChange} required />
+              <input type="number" min="1"  placeholder='Expires after (days)' 
+              onKeyPress={(event) => {if (!/[0-9]/.test(event.key)) {event.preventDefault();}}}
+              name="daysToExpire" id="daysToExpire" className='bg-slate-900 border w-72 border-slate-600 px-2 mt-2 py-1 rounded-md ' onChange={handleChange} required />
               
         </div>
         <button className='bg-sky-600 p-2 rounded-md mt-3'>Publish Snippet</button>
