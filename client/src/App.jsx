@@ -11,6 +11,8 @@ import { createBrowserRouter,Outlet } from 'react-router-dom'
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword'
 import { AuthProvider } from './context/AuthContext'
+import ViewList from './components/ViewList'
+import ViewUpdate from './components/ViewUpdate'
 function App() {
   const [count, setCount] = useState(true)
   // const token=useLongIn()
@@ -58,7 +60,11 @@ export const appRouter=createBrowserRouter([{
     },
     {
       path:"/view",
-      element:<View/>
+      element:<ViewList/>
+    },
+    {
+      path:"/viewupdate/:viewId",
+      element:<ViewUpdate/>
     },
     {
       path:"/profile",

@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import axios from "axios"
+import { useAuth } from '../context/AuthContext'
 const Create = () => {
   const [snippet,setSnippet]=useState({})
   const navigate=useNavigate()
+  const {login}=useAuth()
+
+  useEffect(()=>{
+    const token=localStorage.getItem('token')
+    // console.log('Inside Create',token)
+    if(!token)
+    {
+     navigate('/login')
+    }
+  },[])
+
   function handleChange(e)
   {
     setSnippet({
