@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import CopyIcon from "../assets/icons/CopyIcon";
 import PasteIcon from "../assets/icons/PasteIcon";
+import QRCode from "qrcode.react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const initialValue = {
@@ -179,6 +180,9 @@ const ViewUpdate = () => {
                   )}
                 </div>
               </div>
+              <div className="flex w-64 h-52  mt-7 ml-4">
+                <QRCode value={`http://${currentUrl}/public/${viewId}`} size={200}  />
+                </div>
               <div className="flex sm:flex-row flex-col">
               <button className=" bg-slate-800 shadow-md shadow-slate-700 p-2 w-40 rounded-md mt-3 sm:mx-2">
                 Update Snippet

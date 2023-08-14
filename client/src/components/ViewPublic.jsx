@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import CopyIcon from '../assets/icons/CopyIcon'
 import PasteIcon from '../assets/icons/PasteIcon'
 import { useParams } from 'react-router-dom'
+import QRCode from "qrcode.react";
 const initialValue={
     title:'',
     data:'',
@@ -102,7 +103,11 @@ const ViewPublic = () => {
                     </button>
                   )}
                 </div>
+                <div className="flex w-64 h-52  mt-7 ml-4">
+                <QRCode value={`http://${currentUrl}/public/${viewId}`} size={200}  />
+                </div>
         </div>
+       
       </div>
         </form>
     </div>
