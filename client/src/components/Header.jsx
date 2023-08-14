@@ -31,6 +31,7 @@ const Header = () => {
              <ProfileIcon/> Profile</button></Link>
           </li>
         </ul>
+    <div className='border border-gray-500 mt-2'></div>
       </div>:
       <div className="nav-times">
         <ul className="flex flex-wrap justify-center items-center sm:flex-row flex-col sm:gap-0 gap-3">

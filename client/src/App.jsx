@@ -25,7 +25,6 @@ function App() {
     <div className="bg-slate-900 text-white overflow-hidden font-display">
     <AuthProvider>
     <Header/>
-    <div className='border border-gray-500 mt-2'></div>
      <Outlet/>
      </AuthProvider>
     </div>
