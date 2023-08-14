@@ -96,7 +96,7 @@ const Create = () => {
                 required
               />
             </div>
-            <button className="bg-sky-600 p-2 rounded-md mt-3">
+            <button className="bg-slate-800 shadow-md shadow-slate-700 p-2 rounded-md mt-3">
               Publish Snippet
             </button>
           </div>

@@ -44,9 +44,9 @@ const Login = () => {
     }
   }
   return (
-    <div>
+    <div className='overflow-hidden h-screen'>
       <div className="flex justify-center mt-10">
-        <div className="bg-slate-800 drop-shadow-2xl rounded-md p-10 flex">
+        <div className="bg-slate-800 drop-shadow-2xl rounded-md sm:p-10 p-5 flex">
           <form onSubmit={handleSubmit}>
             <p className='text-xl'>Sign in to your account</p>
             <div className='mt-5'>
@@ -76,7 +76,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-    </div>
+      </div>
   );
 }
 

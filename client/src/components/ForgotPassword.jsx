@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const ForgotPassword = () => {
   const [email,setEmail]=useState({})
   const[isValid,setIsValid]=useState(null)
@@ -16,9 +18,13 @@ const ForgotPassword = () => {
     e.preventDefault()
     try
     {
-      const res=await axios.post('http://localhost:3001/auth/forgot-password',email,{withCredentials:true})
-      setIsValid(true)
-
+     
+      const res=axios.post('http://localhost:3001/auth/forgot-password',email,{withCredentials:true})
+      toast.promise(res, {
+        pending: "Please wait email is on the way...",
+        success: "Please check you mail.", 
+        error: "Something went wrong!", 
+      });
     }
     catch(err)
     {
@@ -27,15 +33,15 @@ const ForgotPassword = () => {
         const {status}=err.response
         if(status===400)
         {
-          setIsValid(false)
+          toast.warn('Email does not exist.');
         }
       }
     }
   }
   return (
-    <div>
+    <div className='h-screen'>
       <div className="flex justify-center mt-10">
-        <div className="bg-slate-800 drop-shadow-2xl rounded-md p-10 flex">
+        <div className="bg-slate-800 drop-shadow-2xl rounded-md sm:p-10 p-5 flex">
           <form onSubmit={handleSubmit}>
             <p className='text-xl'>Forgot your password?</p>
             <div className='mt-5'>
@@ -46,8 +52,8 @@ const ForgotPassword = () => {
             </div>
             <div>
             {/* {isValid?<span className='text-xs text-green-500'>Please check your mail</span>:<span className='text-xs text-red-500'>Email does not exist.</span>} */}
-            {isValid===true  &&<span className='text-xs text-green-500'>Please check your mail</span>}
-             {isValid===false&&<span className='text-xs text-red-500'>Email does not exist.</span>}
+            
+             {/* {isValid===false&&<span className='text-xs text-red-500'>Email does not exist.</span>} */}
       
             </div>
             <div className="mt-4 flex flex-col items-center justify-center">
@@ -57,6 +63,18 @@ const ForgotPassword = () => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   )
 }

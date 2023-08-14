@@ -3,7 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import CopyIcon from "../assets/icons/CopyIcon";
 import PasteIcon from "../assets/icons/PasteIcon";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const initialValue = {
   title: "",
   data: "",
@@ -56,7 +57,10 @@ const ViewUpdate = () => {
         snippet,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      navigate("/view");
+      if(res.data)
+      {
+        toast.success('Snippet updated successfully.');
+      }
     } catch (error) {
       console.log(error.response);
     }
@@ -176,11 +180,11 @@ const ViewUpdate = () => {
                 </div>
               </div>
               <div className="flex sm:flex-row flex-col">
-              <button className="bg-sky-600 p-2 w-40 rounded-md mt-3 sm:mx-2">
+              <button className=" bg-slate-800 shadow-md shadow-slate-700 p-2 w-40 rounded-md mt-3 sm:mx-2">
                 Update Snippet
               </button>
               <button
-                className="bg-sky-600 p-2 w-40 rounded-md mt-3"
+                className=" bg-slate-800 shadow-md shadow-slate-700 p-2 w-40 rounded-md mt-3"
                 type="button"
                 onClick={handleDelete}
               >
@@ -191,6 +195,18 @@ const ViewUpdate = () => {
             </div>
           </div>
         </form>
+        <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       </div>
   );
 };

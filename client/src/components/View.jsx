@@ -11,7 +11,7 @@ const View = ({title,data}) => {
         <p className='text-sm text-slate-300 leading-7'>{data.substring(0, 70)}...</p>
       </div>
       <div className='absolute top-44 right-2 '>
-        <button className='btn bg-slate-800 px-2 py-2 shadow-md rounded'>View/Edit</button>
+        <button className='btn bg-slate-800 shadow-md shadow-slate-700 px-2 py-2  rounded'>View/Edit</button>
       </div>
     </div>
   )

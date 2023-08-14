@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
   const [user,setUser]=useState({})
-  const[isValid,setIsValid]=useState(true)
 
   const navigate=useNavigate()
   function handleChange(e)
@@ -19,8 +20,12 @@ const Register = () => {
     e.preventDefault()
     try
     {
-      const res=await axios.post('http://localhost:3001/auth/signUp',user,{withCredentials:true})
-      setIsValid(true)
+      const res= axios.post('http://localhost:3001/auth/signUp',user,{withCredentials:true})
+      toast.promise(res, {
+        pending: "Please wait your profile is being created...",
+        success: "Account created successfully.", 
+        error: "Email already exist or invalid credentials!", 
+      });
       if(res.status===201)
       {
         navigate('/login')
@@ -29,18 +34,14 @@ const Register = () => {
     {
       if(error.response)
       {
-        const {status}=error.response
-        if(status===401)
-        {
-          setIsValid(false)
-        }
+        navigate('/error')
       }
     }
   }
   return (
-    <div>
+    <div className='h-screen'>
       <div className="flex justify-center mt-10">
-        <div className="bg-slate-800 drop-shadow-2xl rounded-md p-10 flex">
+        <div className="bg-slate-800 drop-shadow-2xl rounded-md sm:p-10 p-5 flex">
           <form onSubmit={handleSubmit}>
             <p className='text-xl'>Create your account</p>
             <div className='mt-5'>
@@ -73,9 +74,7 @@ const Register = () => {
               </label>
               <input type="password" placeholder="• • • • • • • • "name="password" id="password" className='bg-gray-500 px-2 w-72 mt-2 py-1 rounded-lg' onChange={handleChange} required/>
             </div>
-            <div className='mt-2'>
-              <span className='text-xs text-red-500'>{isValid?'':'Please enter the valid Credentials.'}</span>
-            </div>
+          
             <div className='mt-3 text-sm'>
               <Link to='/forgotpassword' className='text-blue-500'>Forgot password</Link>
             </div>
@@ -88,6 +87,18 @@ const Register = () => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   )
 }
