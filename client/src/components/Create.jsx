@@ -34,6 +34,8 @@ const Create = () => {
       }
     } catch (err) {
       console.log(err.response);
+      navigate('/unauthorized')
+
     }
   }
   return (

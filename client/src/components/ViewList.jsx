@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import View from './View'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import axios from 'axios'
-
 const ViewList = () => {
     const [snippets,setSnippets]=useState([])
+    const navigate=useNavigate()
     useEffect(()=>{
         getSnippets()
     },[])
@@ -17,6 +17,7 @@ const ViewList = () => {
             // console.log('user=',res.data[0].user)
         } 
         catch (error) {
+             navigate('/unauthorized')
             console.log(error.response)
         }
     }

@@ -27,6 +27,7 @@ const ViewPublic = () => {
             setTime(daysDifference)
         } 
         catch (error) {
+      navigate('/unauthorized')
             console.log(error.response)
         }
     }

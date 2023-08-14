@@ -32,6 +32,8 @@ const ViewUpdate = () => {
       );
       setTime(daysDifference);
     } catch (error) {
+      navigate('/unauthorized')
+
       console.log(error.response);
     }
   }
@@ -71,7 +73,8 @@ const ViewUpdate = () => {
         navigate("/view");
       }
     } catch (error) {
-      console.log(error.response);
+      console.log('Unauthorized',error.response)
+        navigate('/unauthorized')
     }
   }
   function handleCopy() {
@@ -82,7 +85,7 @@ const ViewUpdate = () => {
     }, 1000);
   }
   return (
-    <div className="bg-inherit pb-10 overflow-hidden">
+    <div className="bg-inherit pb-10  overflow-hidden">
         <form onSubmit={handleUpdate}>
           <div className="flex justify-center  flex-wrap">
             <div className="m-5">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
-
+import { useNavigate } from "react-router-dom";
 const initialState={
   userName:'',
   firstName:'',
@@ -14,7 +14,7 @@ const Profile = () => {
   const [oldPassword,setOldPassword]=useState('')
   const [logo, setLogo] = useState("");
   const {logout}=useAuth()
-
+  const navigate=useNavigate()
   useEffect(() => {
     getUser();
   }, []);
@@ -28,6 +28,7 @@ const Profile = () => {
       console.log('user=',user)
       setLogo(res.data.firstName[0]);
     } catch (error) {
+      navigate('/unauthorized')
       console.log(error.response);
     }
   }
@@ -134,7 +135,7 @@ const Profile = () => {
           placeholder="Enter new passowrd"
           name="password"
           id="password"
-          className="bg-gray-500 px-2 sm:w-72 mt-2 py-1 rounded-lg"
+          className="bg-gray-500 autofill:bg-slate-600  px-2 sm:w-72 mt-2 py-1 rounded-lg"
           onChange={handleChange}
         />
       </div>

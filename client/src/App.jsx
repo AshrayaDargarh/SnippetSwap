@@ -15,13 +15,14 @@ import ViewList from './components/ViewList'
 import ViewUpdate from './components/ViewUpdate'
 import ViewPublic from './components/ViewPublic'
 import Footer from './components/Footer'
+import Unauthorized from './components/Unauthorized'
 function App() {
   const [count, setCount] = useState(true)
   // const token=useLongIn()
   return (
     <>
     
-    <div className="bg-slate-900 text-white overflow-hidden font-display ">
+    <div className="bg-slate-900 text-white overflow-hidden font-display">
     <AuthProvider>
     <Header/>
     <div className='border border-gray-500 mt-2'></div>
@@ -79,5 +80,13 @@ export const appRouter=createBrowserRouter([{
     path:"/public/:viewId",
     element:<ViewPublic/>,
     errorElement:<Error/>
-}])
+},
+,
+    {
+      path:'/unauthorized',
+      element:<Unauthorized/>,
+    errorElement:<Error/>
+    }
+
+])
 export default App
