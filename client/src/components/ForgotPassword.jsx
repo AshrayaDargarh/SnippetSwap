@@ -23,7 +23,7 @@ const ForgotPassword = () => {
       toast.promise(res, {
         pending: "Please wait email is on the way...",
         success: "Please check you mail.", 
-        error: "Something went wrong!", 
+        error: "Email does not exist.", 
       });
     }
     catch(err)

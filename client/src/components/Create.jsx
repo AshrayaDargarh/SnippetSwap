@@ -28,6 +28,8 @@ const Create = () => {
       const res = await axios.post("http://localhost:3001/view", snippet, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log('Res Data=',res.data)
+      console.log('Snippet Data=',snippet)
       if (res) {
         window.alert("Snippet Created Successfully.");
         navigate("/view");

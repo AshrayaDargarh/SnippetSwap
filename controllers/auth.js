@@ -27,7 +27,7 @@ export const login=async(req,res)=>{
         console.log(isAuth)
         if(isAuth)
         {
-            const token=jwt.sign({userId:doc._id},process.env.SECRET_KEY,{expiresIn:'1d'})
+            const token=jwt.sign({userId:doc._id,userName:doc.userName},process.env.SECRET_KEY,{expiresIn:'1d'})
             doc.save()
             console.log('token=',token)
             res.json({token})

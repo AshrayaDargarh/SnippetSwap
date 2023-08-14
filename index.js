@@ -24,6 +24,7 @@ const auth=(req,res,next)=>{
         if(decoded.userId)
         {
             req.userId=decoded.userId
+            req.userName=decoded.userName
             next()
         }
     }
