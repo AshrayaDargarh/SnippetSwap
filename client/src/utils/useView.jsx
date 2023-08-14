@@ -9,7 +9,7 @@ const useView = (viewId) => {
     {
         try{
             const token=localStorage.getItem('token')
-            const res=await axios.get(`http://localhost:3001/view/${viewId}`,{headers:{'Authorization':`Bearer ${token}`}})
+            const res=await axios.get(`https://snippet-swap.vercel.app/view/${viewId}`,{headers:{'Authorization':`Bearer ${token}`}})
             console.log(res.data)
             setSnippet(res.data)
         }

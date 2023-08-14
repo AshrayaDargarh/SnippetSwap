@@ -2,6 +2,7 @@ import express, { json } from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import cors from "cors"
+import path from "path"
 dotenv.config()
 import { authRouter } from "./routes/auth.js"
 import { viewRouter } from "./routes/view.js"
@@ -35,7 +36,7 @@ const auth=(req,res,next)=>{
 }
 // middleware
 app.use(json())
-app.use(cors({ credentials: true, origin: 'http://localhost:5173' }))
+app.use(cors({ credentials: true, origin: 'https://snippet-swap.vercel.app/' }))
 
 app.use('/auth',authRouter)
 app.use('/view',auth,viewRouter)
@@ -51,7 +52,8 @@ app.get('/public/:id',async(req,res)=>{
     }
 })
 app.get('/',(req,res)=>{
-    res.json({success:true,message:"working fine"})
+    app.use(express.static(path.join(path.resolve(),'/client/dist')))
+    res.sendFile(path.join(path.resolve(),'/client/dist/index.html'))
 })
 
 
