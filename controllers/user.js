@@ -18,8 +18,10 @@ export const updateUser=async(req,res)=>{
     try
     {
         const user=await User.findOneAndUpdate({_id:id},req.body,{new:true})
-        const hash=bcrypt.hashSync(req.body.password,10)
-        user.password=hash
+        console.log('User document data',user)
+       
+            const hash=bcrypt.hashSync(req.body.password,10)
+            user.password=hash
         const doc=await user.save()
         res.status(200).json(doc)
     }

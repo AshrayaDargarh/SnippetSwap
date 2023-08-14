@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
-import ChangePassword from "./ChangePassword";
 
 const initialState={
   userName:'',
@@ -12,8 +11,10 @@ const initialState={
 }
 const Profile = () => {
   const [user, setUser] = useState(initialState);
+  const [oldPassword,setOldPassword]=useState('')
   const [logo, setLogo] = useState("");
   const {logout}=useAuth()
+
   useEffect(() => {
     getUser();
   }, []);
@@ -23,9 +24,9 @@ const Profile = () => {
       const res = await axios.get("http://localhost:3001/user", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setUser(res.data);
+      setUser({_id:res.data._id,userName:res.data.userName,firstName:res.data.firstName,lastName:res.data.lastName,email:res.data.email,password:''});
+      console.log('user=',user)
       setLogo(res.data.firstName[0]);
-      console.log("user=", res.data);
     } catch (error) {
       console.log(error.response);
     }
@@ -35,8 +36,14 @@ const Profile = () => {
     e.preventDefault()
     try{
       const token=localStorage.getItem('token')
+      if(user.password==='')
+      {
+        console.log('User pass is empty')
+        delete user.password
+      }
+      console.log('After removing password',user)
       const res=await axios.patch(`http://localhost:3001/user/${user._id}`,user,{headers:{Authorization:`Bearer ${token}`}})
-      console.log(res.data)
+      console.log(res)
     }catch(error)
     {
       console.log(error.response)
@@ -50,8 +57,8 @@ const Profile = () => {
     })
   }
   return (
-    <div >
-       <form className="flex flex-col justify-center items-center mt-20 " onSubmit={handleSubmit}>
+    <div className="mb-32">
+       <form className="flex flex-col justify-center items-center mt-20" onSubmit={handleSubmit}>
       <div className="w-20 bg-blue-400 h-20 rounded-full flex justify-center items-center">
         <p className="text-4xl font-extrabold"> {logo}</p>
       </div>
@@ -69,7 +76,7 @@ const Profile = () => {
           placeholder="Enter user name"
           name="userName"
           id="userName"
-          className="bg-gray-500 px-2 w-72 mt-2 py-1 rounded-lg"
+          className="bg-gray-500 px-2 sm:w-72 mt-2 py-1 rounded-lg"
           onChange={handleChange}
           required
         />
@@ -84,7 +91,7 @@ const Profile = () => {
           placeholder="Enter first name"
           name="firstName"
           id="firstName"
-          className="bg-gray-500 px-2 w-72 mt-2 py-1 rounded-lg"
+          className="bg-gray-500 px-2 sm:w-72 mt-2 py-1 rounded-lg"
           onChange={handleChange}
           required
         />
@@ -99,7 +106,7 @@ const Profile = () => {
           placeholder="Enter last name"
           name="lastName"
           id="lastName"
-          className="bg-gray-500 px-2 w-72 mt-2 py-1 rounded-lg"
+          className="bg-gray-500 px-2 sm:w-72 mt-2 py-1 rounded-lg"
           onChange={handleChange}
           required
         />
@@ -114,20 +121,32 @@ const Profile = () => {
           placeholder="Enter your email"
           name="email"
           id="email"
-          className="bg-gray-500 px-2 w-72 mt-2 py-1 rounded-lg"
+          className="bg-gray-500 px-2 sm:w-72 mt-2 py-1 rounded-lg"
           readOnly
         />
       </div>
-      <div className="mt-6 ">
-      <button className='bg-sky-600 p-2 mx-2 rounded-md' >Update Profile</button>
+      <div className="mt-5">
+        <label htmlFor="password" className="block text-lg">
+          Change Password
+        </label>
+        <input
+          type="password"
+          placeholder="Enter new passowrd"
+          name="password"
+          id="password"
+          className="bg-gray-500 px-2 sm:w-72 mt-2 py-1 rounded-lg"
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mt-6 sm:flex-none flex flex-col gap-4">
+      <button className='bg-sky-600 p-2 mx-2 rounded-md ' >Update Profile</button>
         <button className='bg-sky-600 p-2 rounded-md' type='button' onClick={logout}>Log out</button>
       </div>
+     
       </form>
-      <div className="flex justify-center">
-      <ChangePassword id={user._id}/>
-      </div>    
-      </div>
+
+    </div>
   );
-};
+  }
 
 export default Profile;

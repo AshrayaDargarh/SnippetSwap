@@ -14,16 +14,17 @@ const ViewList = () => {
         const token=localStorage.getItem('token')
         const res=await axios.get('http://localhost:3001/view',{headers:{'Authorization':`Bearer ${token}`}})
             setSnippets(res.data)
-            console.log('user=',res.data[0].user)
+            // console.log('user=',res.data[0].user)
         } 
         catch (error) {
             console.log(error.response)
         }
     }
-    console.log(snippets)
   return (
-    <div className='flex justify-center m-5 flex-wrap' >
+    <div className='h-screen'>
+    <div className='flex justify-center lg:gap-0 gap-8  m-20 flex-wrap' >
         {snippets.length===0?<div>No snippet available</div>:snippets.map((snippet)=>{return <Link to={'/viewupdate/'+snippet._id} key={snippet._id}><View key={snippet._id} {...snippet}/> </Link> })}
+    </div>
     </div>
   )
 }
