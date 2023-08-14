@@ -21,11 +21,9 @@ const auth=(req,res,next)=>{
     try{
         const token=req.get('Authorization').split('Bearer ')[1]
         const decoded=jwt.verify(token,process.env.SECRET_KEY)
-        console.log(decoded.userName)
-        if(decoded.userId && decoded.userName)
+        if(decoded.userId)
         {
             req.userId=decoded.userId
-            req.userName=decoded.userName
             next()
         }
     }

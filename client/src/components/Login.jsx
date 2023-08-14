@@ -20,8 +20,9 @@ const Login = () => {
     e.preventDefault()
     try
     {
-      const res=await axios.post('http://localhost:3001/auth/login',user,{withCredentials:true})
+      const res=await axios.post('http://localhost:3001/auth/login',user)
       // localStorage.setItem('token',res.data.token)
+      console.log('Sign is submitted',res)
       setIsValid(true)
       console.log(res.data.token)
       login(res.data.token)
@@ -29,6 +30,7 @@ const Login = () => {
     }
     catch(err)
     {
+      console.log(err.response)
      
       if(err.response)
       {
@@ -66,7 +68,7 @@ const Login = () => {
               <Link to='/forgotpassword' className='text-blue-500'>Forgot password</Link>
             </div>
             <div className="mt-3 flex flex-col items-center justify-center">
-              <button className="bg-sky-700 px-20 py-1 rounded-lg">Sign in</button>
+              <button className="bg-sky-700 px-20 py-1 rounded-lg" type='submit'>Sign n</button>
             </div>
             <p className='mt-4 text-sm'>
                 Don't have an account yet? <Link to='/signup' className='text-blue-500'>Sign up</Link>

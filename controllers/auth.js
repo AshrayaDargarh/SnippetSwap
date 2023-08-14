@@ -21,13 +21,20 @@ export const signUp=async(req,res)=>{
 
 export const login=async(req,res)=>{
     try{
-        const doc=await User.findOne({email:req.body.email}) || await User.findOne({userName:req.body.userName})
+        const doc=await User.findOne({email:req.body.email})
         const isAuth=await bcrypt.compare(req.body.password,doc.password)
+        console.log(req.body.password)
+        console.log(isAuth)
         if(isAuth)
         {
-            const token=jwt.sign({userId:doc._id,userName:doc.userName},process.env.SECRET_KEY,{expiresIn:'1d'})
+            const token=jwt.sign({userId:doc._id},process.env.SECRET_KEY,{expiresIn:'1d'})
             doc.save()
+            console.log('token=',token)
             res.json({token})
+        }
+        else
+        {
+        res.status(400).json({message:"Invalid Email Or password"})
         }
     }
     catch(error)
