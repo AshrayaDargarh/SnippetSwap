@@ -19,7 +19,7 @@ const ViewPublic = () => {
     async function getView()
     {
         try {
-            const res=await axios.get(`http://localhost:3001/public/${viewId}`)
+            const res=await axios.get(`/public/${viewId}`)
             setSnippet(res.data)
             const inputDate = new Date(res.data.intendedExpireAt);
             const currentDate = new Date();

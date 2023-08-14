@@ -17,7 +17,7 @@ const ResetPassword = () => {
   {
     e.preventDefault()
     try {
-      const res=await axios.post(`http://localhost:3001/auth/reset-password/${resetToken}`,password,{withCredentials:true})
+      const res=await axios.post(`/auth/reset-password/${resetToken}`,password,{withCredentials:true})
       setIsValid(true)
       navigate('/login')
     } catch (error) {

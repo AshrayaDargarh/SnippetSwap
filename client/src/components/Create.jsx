@@ -25,7 +25,7 @@ const Create = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.post("http://localhost:3001/view", snippet, {
+      const res = await axios.post("/view", snippet, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log('Res Data=',res.data)

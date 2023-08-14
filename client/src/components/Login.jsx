@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault()
     try
     {
-      const res=await axios.post('http://localhost:3001/auth/login',user)
+      const res=await axios.post('/auth/login',user)
       // localStorage.setItem('token',res.data.token)
       console.log('Sign is submitted',res)
       setIsValid(true)
