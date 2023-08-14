@@ -22,7 +22,7 @@ const Profile = () => {
   async function getUser() {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("https://snippet-swap.vercel.app/user", {
+      const res = await axios.get("/user", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser({_id:res.data._id,userName:res.data.userName,firstName:res.data.firstName,lastName:res.data.lastName,email:res.data.email,password:''});
@@ -44,7 +44,7 @@ const Profile = () => {
         delete user.password
       }
       console.log('After removing password',user)
-      const res=await axios.patch(`https://snippet-swap.vercel.app/user/${user._id}`,user,{headers:{Authorization:`Bearer ${token}`}})
+      const res=await axios.patch(`/user/${user._id}`,user,{headers:{Authorization:`Bearer ${token}`}})
       if(res.data)
       {
         toast.success('Profile updated successfully');

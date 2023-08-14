@@ -4,9 +4,9 @@
   "description": "",
   "type": "module",
   "main": "index.js",
+  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
     "start": "node index.js"
   },
   "author": "",

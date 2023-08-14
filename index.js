@@ -36,7 +36,7 @@ const auth=(req,res,next)=>{
 }
 // middleware
 app.use(json())
-app.use(cors({ credentials: true, origin: 'https://snippet-swap.vercel.app/' }))
+app.use(cors())
 
 app.use('/auth',authRouter)
 app.use('/view',auth,viewRouter)
@@ -55,6 +55,7 @@ app.get('/',(req,res)=>{
     app.use(express.static(path.join(path.resolve(),'/client/dist')))
     res.sendFile(path.join(path.resolve(),'/client/dist/index.html'))
 })
+// --experimental-modules --es-module-specifier-resolution=node
 
 
 const PORT=process.env.PORT_URL || 4000
