@@ -34,7 +34,7 @@ function App() {
 }
 export const appRouter=createBrowserRouter([{
   path:"/",
-  element:<App/>,
+  element:<Home/>,
   errorElement:<Error/>,
   children:[
     {
