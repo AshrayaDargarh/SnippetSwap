@@ -37,6 +37,7 @@ const auth=(req,res,next)=>{
 // middleware
 app.use(json())
 app.use(cors())
+app.use(express.static(process.env.PUBLIC_DIR))
 
 app.use('/auth',authRouter)
 app.use('/view',auth,viewRouter)
@@ -51,7 +52,10 @@ app.get('/public/:id',async(req,res)=>{
         res.json(error)
     }
 })
-
+app.use("*",(req,res)=>{
+    res.sendFile(path.join(path.resolve(),'/dist/index.html'))
+  })
+  
 
 const PORT=process.env.PORT_URL || 4000
 app.listen(PORT,()=>{  
