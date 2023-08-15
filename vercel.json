@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "snippetswap",
-  "builds": [{ "src": "dest/**", "use": "@vercel/static" }],
+  "builds": [{ "src": "build/**", "use": "@vercel/static" }],
   "routes": [
     {
       "src": "/public",
@@ -13,11 +13,11 @@
     },
     {
       "src": "/",
-      "dest": "dest/index.html"
+      "dest": "build/index.html"
     },
     {
       "src": "/(.+)",
-      "dest": "dest/$1"
+      "dest": "build/$1"
     }
   ]
 }
