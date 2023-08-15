@@ -2,13 +2,13 @@
     "version": 2,
     "name": "snippetswap",
     "builds": [
-       { "src": "dist/**", "use": "@vercel/static" }
+       { "src": "build/**", "use": "@vercel/static" }
     ],
     "routes": [
        { "src": "/(.*)", "dest": "app.js" },
        {
          "src": "/(.+)",
-         "dest": "dist/$1" 
+         "dest": "build/$1" 
        }
     ]
  }
