@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import Create from './components/Create'
-import View from './components/View'
 import Profile from './components/Profile'
 import Error from './components/Error'
 import Login from './components/Login'
@@ -14,7 +13,6 @@ import { AuthProvider } from './context/AuthContext'
 import ViewList from './components/ViewList'
 import ViewUpdate from './components/ViewUpdate'
 import ViewPublic from './components/ViewPublic'
-import Footer from './components/Footer'
 import Unauthorized from './components/Unauthorized'
 function App() {
   const [count, setCount] = useState(true)
@@ -34,7 +32,7 @@ function App() {
 }
 export const appRouter=createBrowserRouter([{
   path:"/",
-  element:<Home/>,
+  element:<App/>,
   errorElement:<Error/>,
   children:[
     {
