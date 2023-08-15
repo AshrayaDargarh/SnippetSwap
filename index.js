@@ -50,7 +50,9 @@ app.get('/public/:id',async(req,res)=>{
         res.json(error)
     }
 })
-
+app.get("/",(req,res)=>{
+    res.send("<h1>Home route working sexy</h1>")
+})
 const PORT=process.env.PORT_URL || 4000
 app.listen(PORT,()=>{  
     console.log(`Server is listing at http://localhost:${PORT}`)
