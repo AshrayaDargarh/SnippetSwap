@@ -9,4 +9,4 @@ export default defineConfig({
       external: ['mongoose'] // add the module name here
     }
   }
-},
+})
