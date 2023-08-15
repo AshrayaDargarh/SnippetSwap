@@ -1,7 +1,10 @@
 {
     "version": 2,
-    "name": "snippetswap",
+    "name": "music-album",
+    "builds": [
+       { "src": "app.js", "use": "@vercel/node" }
+    ],
     "routes": [
-        { "src": "/(.*)", "dest": "index.js" }
-      ]
+       { "src": "/(.*)", "dest": "/app.js" }
+    ]
  }
