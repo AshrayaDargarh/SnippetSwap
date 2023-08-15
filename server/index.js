@@ -51,11 +51,6 @@ app.get('/public/:id',async(req,res)=>{
         res.json(error)
     }
 })
-app.get('/',(req,res)=>{
-    app.use(express.static(path.join(path.resolve(),'/client/dist')))
-    res.sendFile(path.join(path.resolve(),'/client/dist/index.html'))
-})
-// --experimental-modules --es-module-specifier-resolution=node
 
 
 const PORT=process.env.PORT_URL || 4000
